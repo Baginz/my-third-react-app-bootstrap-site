@@ -8,7 +8,8 @@ import Error from "../pages/Error";
 import GamePage from "../pages/GamePage";
 import PostIdPage from "../pages/PostIdPage";
 
-
+// :id динамический путь
+//exact нужен чтобы роутер воспринимал как разные
 export const privateRoutes = [
     {path: '/about', component: About, exact: true},
     {path: '/posts', component: Posts, exact: true},

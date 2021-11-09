@@ -3,6 +3,7 @@ import MyButton from "../UI/button/MyButton";
 import {useHistory} from 'react-router-dom';
 
 const PostItem = (props) => {
+    //
     const router = useHistory()
 
     return (
@@ -14,9 +15,11 @@ const PostItem = (props) => {
                 </div>
             </div>
             <div className="post__btns">
+                 {/*переходим на страницу через пуш */}
                 <MyButton onClick={() => router.push(`/posts/${props.post.id}`)}>
                     Открыть
                 </MyButton>
+                {/*функция прокинута из Posts и отрабатывает там при вызове */}
                 <MyButton onClick={() => props.remove(props.post)}>
                     Удалить
                 </MyButton>

@@ -14,35 +14,46 @@ import MySelect from "../components/UI/select/MySelect";
 
 
 function Posts() {
+    //массив постов который получаем с сервера
     const [posts, setPosts] = useState([])
+    //сортировка и поиск, пустые передаются в постфильтер
     const [filter, setFilter] = useState({ sort: '', query: '' })
+    //показывает модалку если тру
     const [modal, setModal] = useState(false);
+    // количетсво страниц всего, высчитывается в getPageCount
     const [totalPages, setTotalPages] = useState(0);
+    //лимит выбираемы в селекте, сколько постов на странице будет
     const [limit, setLimit] = useState(10);
+    //номер текущей страницы
     const [page, setPage] = useState(1);
+    //наш массив постов который передается в постлист и отрисовывается (когда он меняется он перерисовывается)
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-
+    //через наш хук заполняем массив постов и количество стриниц под них и крутим пока не загрузит
     const [fetchPosts, isPostsLoading, postError] = useFetching(async (limit, page) => {
         const response = await PostService.getAll(limit, page);
         setPosts(response.data)
+        //тут в хедере передается количество постов всего
         const totalCount = response.headers['x-total-count']
         setTotalPages(getPageCount(totalCount, limit));
     })
-
+    //при изменении страницы или лимита получаем заново посты
     useEffect(() => {
         fetchPosts(limit, page)
     }, [page, limit])
 
+    //пропсом даем в postform
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
+        //при срабатывании в пофстформ скрываем модальное окно
         setModal(false)
     }
 
     // Получаем post из дочернего компонента
     const removePost = (post) => {
+        //если айдишники равны удаляем пост
         setPosts(posts.filter(p => p.id !== post.id))
     }
-
+    //при переходе на другую страницу
     const changePage = (page) => {
         setPage(page)
         fetchPosts(limit, page)

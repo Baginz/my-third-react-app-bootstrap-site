@@ -3,6 +3,15 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 
 const Nootes = ({ notes, onRemove }) => {
+
+    if (!notes.length) {
+        return (
+            <h1 style={{textAlign: 'center'}}>
+                Заметки не найдены!
+            </h1>
+        )
+    }
+
     return (
         <TransitionGroup component="ul" className="list-group">
             {notes.map(note => (

@@ -8,6 +8,7 @@ const AppRouter = () => {
     const {isAuth, isLoading} = useContext(AuthContext);
     console.log(isAuth)
 
+    //пока заходим на сайт рисует лоадер
     if (isLoading) {
         return <Loader/>
     }

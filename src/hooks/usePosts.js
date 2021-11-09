@@ -1,5 +1,9 @@
 import {useMemo} from "react";
 
+// сортируем по поиску
+// чтобы при введении каждой буквы в поиск массив не рендерился заново использум кеширование юзмемо
+//он заново кеширует при изменении в [sort, posts]
+// также если сорт пустой ничего не делаем
 export const useSortedPosts = (posts, sort) => {
     const sortedPosts = useMemo(() => {
         if(sort) {

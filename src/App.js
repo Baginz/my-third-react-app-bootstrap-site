@@ -11,6 +11,7 @@ function App() {
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setLoading] = useState(true);
 
+    //запускается только при первом рендере при пустых []
     useEffect(() => {
         if (localStorage.getItem("auth")) {
             setIsAuth(true);
@@ -18,6 +19,7 @@ function App() {
         setLoading(false);
     }, []);
 
+    //тут три контекст провайдера а внутрии роутер
     return (
         <AuthContext.Provider
             value={{

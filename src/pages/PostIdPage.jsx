@@ -5,9 +5,11 @@ import PostService from "../API/PostService";
 import Loader from "../components/UI/Loader/Loader";
 
 const PostIdPage = () => {
+    //возврашает обьект с текушим id: и используем это для отрисовки
     const params = useParams()
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
+    //берем данные с свервера через обертку в хуке для ошибок и лоадера
     const [fetchPostById, isLoading, error] = useFetching(async (id) => {
         const response = await PostService.getById(id)
         setPost(response.data);

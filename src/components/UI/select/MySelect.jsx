@@ -1,6 +1,9 @@
 import React from 'react';
 
-const MySelect = ({options, defaultValue, value, onChange}) => {
+const MySelect = ({ options, defaultValue, value, onChange }) => {
+
+    /*ончендж передаем сразу значение которое выбрал пользователь */ 
+
     return (
         <select
             value={value}
