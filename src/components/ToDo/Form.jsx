@@ -31,7 +31,6 @@ const Form = () => {
                     value={value}
                     onChange={e => setValue(e.target.value)}
                 />
-                <button>Поиск</button>
             </div>
         </form>
     )
